@@ -1,0 +1,86 @@
+.placePurchaseOrder-main{
+    .add-btn{
+        float: right;
+    }
+    .select-channel-dialog{
+       padding: 10px;
+    }
+
+    /deep/ .dialog-main {
+        .dialog-conainer{
+            .dialog-body{
+                padding: 0;
+            }
+        }
+    }
+    .place-order-dialog{
+        width: 1000px;
+        padding-bottom: 10px;
+        .header{
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            color: #222;
+            font-weight: bold;
+        }
+        .order-info{
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            .span-value{
+                display: inline-block;
+                max-width: 200px;
+            }
+        }
+        .place-order-info{
+            padding: 10px;
+            overflow-y: auto;
+            .display-row{
+                align-items: flex-start;
+            }
+            .div-img{
+                border:1px solid #ddd;
+                border-radius: 4px;
+                padding: 10px 20px;
+                .largeDiv{
+                    min-height: 300px;
+                }
+                img{
+                    display: block;
+                    width: 100%;
+                }
+            }
+            .div-img-list{
+                margin-top: 10px;
+                display: flex;
+                overflow-y: auto;
+                .item{
+                    cursor: pointer;
+                    flex:0 0 100px;
+                    height: 100px;
+                    margin-right: 10px;
+                    &:last-child{
+                        margin-right: 0;
+                    }
+                }
+            }
+            .content{
+                padding: 10px;
+                .lable-1{
+                    font-weight: bold;
+                    margin-bottom: 20px;
+                }
+                .lable-2{
+                    color: red;
+                }
+                .section{
+                    padding:30px 10px;
+                    line-height: 30px;
+                    background-color: #f2f2f2;
+                    margin: 10px 0;
+                }
+                .address-input{
+                    width: 474px;
+                }
+            }
+        }
+    }
+}

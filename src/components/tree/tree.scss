@@ -1,0 +1,31 @@
+.my-tree-main{
+    .tree-item{
+        color: #a7bfe9;
+        height: 42px;line-height: 42px;padding:0 14px;border-bottom: 1px solid #2a3d52;
+        cursor: pointer;
+
+        &:hover{background-color:#233345;}
+
+        .tree-icon{
+            font-size: 20px;
+            position: relative;
+            top: 2px;
+            cursor: pointer;
+            padding-right: 5px;
+            display: inline-block;
+            min-width: 25px;
+        }
+    }
+
+    .tree-item-child-active{
+        background-color: #515f72;color: white;
+        position: relative;
+
+        &::after{
+            position: absolute;
+            content: ' ';width: 2px;
+            background-color: #ff7b48;
+            left: 0;top: 0;bottom: 0;
+        }
+    }
+}

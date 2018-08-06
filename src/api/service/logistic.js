@@ -1,0 +1,32 @@
+export default {
+    getAllSendingInfo:{
+        url:'api/scm/logistic/getAllSendingInfo',
+        hostName:'scm'
+    },
+    confirmSendCommodity:{
+        url:'api/scm/logistic/confirmSendCommodity',
+        hostName:'scm'
+    },
+    comfirmSelfExtraction:{
+        url:'api/scm/logistic/comfirmSelfExtraction'
+    },
+    gounderline:{
+        url:'api/scm/logistic/sending/gounderline'
+    },
+    editCustomerAddress:{
+        url:'api/scm/logistic/sending/editCustomerAddress'
+    },
+    getAllSendedInfo:{
+        url:'api/scm/logistic/getAllSendedInfo'
+    },
+    goRouteInfo:{
+        url:'api/scm/logistic/goRouteInfo',
+        method:'get'
+    },
+    printerWayBill:{
+        url:'api/scm/logistic/printerWayBill'
+    },
+    confirmCollectgoods:{
+        url:'api/scm/logistic/goods/confirmCollectgoods'
+    }
+}

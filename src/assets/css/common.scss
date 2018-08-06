@@ -1,0 +1,140 @@
+/*<transition></transition> 动画*/
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.1s ease;
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+.float-right {
+  float: right;
+}
+//弹式布局
+.display-row {
+  display: flex;
+  align-items: center;
+}
+.display-col {
+  flex: 1;
+}
+.display-col-100 {
+  flex: 0 0 100px;
+}
+.display-col-300 {
+  flex: 0 0 300px;
+}
+.display-col-400 {
+  flex: 0 0 400px;
+}
+.display-col-per25 {
+  flex: 0 0 25%;
+}
+.display-align-left .display-col {
+  text-align: left;
+}
+.display-align-center .display-col {
+  text-align: center;
+}
+.display-align-right .display-col {
+  text-align: right;
+}
+.align-left {
+  text-align: left;
+}
+.align-center {
+  text-align: center;
+}
+.align-right {
+  text-align: right;
+}
+
+//表单
+.my-form {
+  .form-item {
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .form-item > label {
+    display: inline-block;
+    min-width: 120px;
+    text-align: right;
+  }
+  .form-item > .el-input {
+    display: inline-block;
+    width: 300px;
+  }
+  .form-item > .el-select {
+    display: inline-block;
+    width: 300px;
+  }
+  .form-item > .el-textarea {
+    display: inline-block;
+    width: 300px;
+  }
+  .form-item > .el-button {
+    min-width: 120px;
+  }
+  .form-item .el-radio {
+    min-width: auto;
+  }
+  .form-item:last-child {
+    margin-bottom: 0;
+  }
+  .form-item-inline {
+    .form-item {
+      display: inline-block;
+      margin-right: 20px;
+    }
+  }
+  .form-item-flex {
+    display: flex;
+    .el-input,
+    .el-select,
+    .el-textarea,
+    .el-button,
+    .el-radio,
+    .el-check {
+      margin-left: 4px;
+    }
+  }
+}
+
+//查询
+.common-search {
+  .item {
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    label {
+      display: inline-block;
+      font-size: 14px;
+    }
+    .el-input {
+      width: 200px;
+    }
+    .el-select {
+      width: 200px;
+      .el-input {
+        width: 100%;
+      }
+    }
+  }
+}
+
+//列表按扭
+.table-btn-div {
+  .row-btn {
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+    color: #20a0ff;
+    &:hover {
+      color: #177ecb;
+    }
+  }
+}
+
+.dialog-padding {
+  padding: 0 100px;
+}

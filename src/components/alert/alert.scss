@@ -1,0 +1,75 @@
+.alert-main{
+    position: fixed;top:0;left:0;right: 0;bottom: 0;z-index: 9999;
+    display: flex;align-items: center;justify-content: center;
+    .alert-layout{
+        position: absolute;top:0;left:0;right: 0;bottom: 0;z-index: 1;
+        background-color: #000;opacity: 0.5;z-index: 1
+    }
+    .alert-container{
+        border-radius: 5px;overflow: hidden;max-width: 800px;min-width: 400px;
+        position: relative;z-index: 2;background-color: white;
+        .alert-header{
+            position: relative;cursor: move;
+            height: 48px;line-height: 48px;padding-left: 10px;
+            border-bottom: 1px solid #e5e5e5;
+            .alert-remove{
+                display: inline-block;
+                float: right;width: 40px;text-align: center;cursor: pointer;
+                .el-icon-close{font-weight: 900;}
+            }
+        }
+
+        .alert-body{
+            padding: 15px 10px;min-height: 54px;max-height: 400px;overflow-y:auto;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .alert-footer{
+            padding: 10px;text-align: right;
+        }
+    }
+
+    .alert-info{
+        .alert-header{background-color: #2d4057;color: white;
+            .alert-remove {
+                .el-icon-close{color: white;}
+            }
+        }
+    }
+
+    .alert-success{
+        .alert-header{background-color: #2d4057;color: white;
+            .alert-remove {
+                .el-icon-close{color: white;}
+            }
+        }
+    }
+
+    .alert-error{
+        .alert-header{background-color: #e1554e;color: white;
+            .alert-remove {
+                .el-icon-close{color: #b94640;}
+            }
+        }
+    }
+
+    .alert-confirm{
+        .alert-header{background-color: #2d4057;color: white;
+            .alert-remove {
+                .el-icon-close{color: white;}
+            }
+        }
+    }
+
+    .alert-toast{
+        .toast-body{
+            text-align: center;position: relative;border-radius: 6px;
+            padding: 20px 30px;overflow: hidden;
+            .toast-layout{
+                position: absolute;top:0;left:0;right:0;bottom:0;
+                background-color: #000;opacity: 0.8;z-index: 1
+            }
+            .toast-txt{position: relative; z-index: 1; color: white;font-size: 14px;}
+         }
+    }
+}
