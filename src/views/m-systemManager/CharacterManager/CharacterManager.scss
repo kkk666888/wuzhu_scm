@@ -1,0 +1,16 @@
+.CharacterManager {
+  .role-dialog {
+    padding: 10px 100px;
+  }
+  .dialogTree {
+    border: 1px solid #ccc;
+    height: 280px;
+    overflow-y: scroll;
+    margin-top: -1px;
+  }
+  .show-treename {
+    input:hover {
+      cursor: pointer;
+    }
+  }
+}

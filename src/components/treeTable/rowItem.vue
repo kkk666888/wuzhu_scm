@@ -27,20 +27,22 @@ export default {
     methods:{
         //获取行集合
         getRows(trs,data){
-            data.forEach(row => {
-                let rowTds = this.getRowTds(row);
-                let selectClass = this.currentRowId == row[this.option.idField] ? 'tt-row-selected' : '';
+            if(data && data.length > 0){
+                data.forEach(row => {
+                    let rowTds = this.getRowTds(row);
+                    let selectClass = this.currentRowId === row[this.option.idField] ? 'tt-row-selected' : '';
 
-                let tr = <tr class={selectClass} onClick={()=>{this.rowClick(row)}}>{rowTds}</tr>;
-                trs.push(tr);
+                    let tr = <tr class={selectClass} onClick={()=>{this.rowClick(row)}}>{rowTds}</tr>;
+                    trs.push(tr);
 
-                if(row._showChild){
-                    let child = row[this.option.childField];
-                    if(child && child.length > 0){
-                        this.getRows(trs,child);
+                    if(row._showChild){
+                        let child = row[this.option.childField];
+                        if(child && child.length > 0){
+                            this.getRows(trs,child);
+                        }
                     }
-                }
-            })
+                })
+            }
         },
         //获取行td集合
         getRowTds(row){
@@ -50,41 +52,41 @@ export default {
                 let checkboxTd = this.getCheckboxTd(row);
                 result.push(checkboxTd);
             }
-
-            this.option.columns.forEach(column=>{
-                if(column.render){
-                    result.push(<td width={column.width}>
-                        <div class='tt-cell'>
-                            <cell-render row={row} index={1} render={column.render}></cell-render>
-                        </div>
-                    </td>);
-                }
-                else{
-                    if(this.option.diaplayField == column.prop){
-                        //树节点列
-                        let style = {paddingLeft:((row._level - 1) * 25 + 10) + 'px'}
-                        let iconClass = row._showChild ? "el-icon-caret-bottom" : "el-icon-caret-right"
-
+            if(this.option.columns && this.option.columns.length >0){
+                this.option.columns.forEach(column=>{
+                    if(column.render){
                         result.push(<td width={column.width}>
-                            <div class='tt-cell' style={style}>
-                                {
-                                    row[this.option.leafField] ? <span class="tree-icon"></span> : 
-                                    <span class="tree-icon" onClick={()=>{this.showChild(row)}}>
-                                        <i class={iconClass}></i>
-                                    </span>
-                                }
-                                {row[this.option.diaplayField]}
+                            <div class='tt-cell'>
+                                <cell-render row={row} index={1} render={column.render}></cell-render>
                             </div>
                         </td>);
                     }
                     else{
-                        result.push(<td width={column.width}>
-                            <div class='tt-cell'>{row[column.prop]}</div>
-                        </td>);
-                    }
-                }
-            })
+                        if(this.option.diaplayField == column.prop){
+                            //树节点列
+                            let style = {paddingLeft:((row._level - 1) * 25 + 10) + 'px'}
+                            let iconClass = row._showChild ? "el-icon-caret-bottom" : "el-icon-caret-right"
 
+                            result.push(<td width={column.width}>
+                                <div class='tt-cell' style={style}>
+                                    {
+                                        row[this.option.leafField] ? <span class="tree-icon"></span> : 
+                                        <span class="tree-icon" onClick={()=>{this.showChild(row)}}>
+                                            <i class={iconClass}></i>
+                                        </span>
+                                    }
+                                    {row[this.option.diaplayField]}
+                                </div>
+                            </td>);
+                        }
+                        else{
+                            result.push(<td width={column.width}>
+                                <div class='tt-cell'>{row[column.prop]}</div>
+                            </td>);
+                        }
+                    }
+                })
+            }
             return result;
         },
         //获取复选框td

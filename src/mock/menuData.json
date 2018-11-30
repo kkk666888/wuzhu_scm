@@ -1,0 +1,379 @@
+{
+  "code": "00",
+  "msg": null,
+  "data": [
+    {
+      "id": "1152",
+      "itemId": null,
+      "text": "index",
+      "iconCls": null,
+      "expanded": true,
+      "leaf": true,
+      "classPath": "index",
+      "url": "123",
+      "type": "menu",
+      "parentId": "0",
+      "children": []
+    },
+    {
+      "id": "1100",
+      "itemId": null,
+      "text": "test",
+      "iconCls": null,
+      "expanded": true,
+      "leaf": false,
+      "classPath": "test",
+      "url": "/test",
+      "type": "menu",
+      "parentId": "0",
+      "children": [
+        {
+          "id": "1104",
+          "itemId": null,
+          "text": "test2",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": true,
+          "classPath": null,
+          "url": "test/test2",
+          "type": "menu",
+          "parentId": "1100",
+          "children": null
+        },
+        {
+          "id": "1105",
+          "itemId": null,
+          "text": "test3",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": false,
+          "classPath": null,
+          "url": "test/test3",
+          "type": "menu",
+          "parentId": "1100",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "1082",
+      "itemId": null,
+      "text": "商品管理",
+      "iconCls": null,
+      "expanded": true,
+      "leaf": false,
+      "classPath": "productManage",
+      "url": "productManage",
+      "type": "dirt",
+      "parentId": "0",
+      "children": [
+        {
+          "id": "1083",
+          "itemId": null,
+          "text": "待发货管理",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": true,
+          "classPath": "waitShipments",
+          "url": "waitShipments",
+          "type": "menu",
+          "parentId": "1082",
+          "children": null
+        },
+        {
+          "id": "1084",
+          "itemId": null,
+          "text": "入库管理",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": false,
+          "classPath": "inStorage",
+          "url": "inStorage",
+          "type": "menu",
+          "parentId": "1082",
+          "children": []
+        },
+        {
+          "id": "1085",
+          "itemId": null,
+          "text": "已发货管理",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": false,
+          "classPath": "hadShipments",
+          "url": "hadShipments",
+          "type": "menu",
+          "parentId": "1082",
+          "children": []
+        },
+        {
+          "id": "1086",
+          "itemId": null,
+          "text": "库存管理",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": false,
+          "classPath": "stockManage",
+          "url": "stockManage",
+          "type": "menu",
+          "parentId": "1082",
+          "children": []
+        },
+        {
+          "id": "1087",
+          "itemId": null,
+          "text": "入库单管理",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": true,
+          "classPath": "InStorageReceipt",
+          "url": "InStorageReceipt",
+          "type": "menu",
+          "parentId": "1082",
+          "children": null
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "itemId": null,
+      "text": "系统管理",
+      "iconCls": null,
+      "expanded": true,
+      "leaf": false,
+      "classPath": null,
+      "url": null,
+      "type": "dirt",
+      "parentId": "0",
+      "children": [
+        {
+          "id": "19",
+          "itemId": null,
+          "text": "用户管理",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": true,
+          "classPath": "userManager",
+          "url": "com.jinda.common.shiro.controller.sys.UserController.queryUserBypage",
+          "type": "menu",
+          "parentId": "18",
+          "children": null
+        },
+        {
+          "id": "20",
+          "itemId": null,
+          "text": "角色管理",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": false,
+          "classPath": "characterManager",
+          "url": "com.jinda.common.shiro.controller.sys.RoleController.queryRoleByPage",
+          "type": "menu",
+          "parentId": "18",
+          "children": []
+        },
+        {
+          "id": "21",
+          "itemId": null,
+          "text": "资源管理",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": false,
+          "classPath": "resourceManager",
+          "url": "com.jinda.common.shiro.controller.sys.ResourceController.loadResourceTree",
+          "type": "menu",
+          "parentId": "18",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "1088",
+      "itemId": null,
+      "text": "归还管理",
+      "iconCls": null,
+      "expanded": true,
+      "leaf": false,
+      "classPath": null,
+      "url": "returnManage",
+      "type": "dirt",
+      "parentId": "0",
+      "children": [
+        {
+          "id": "1089",
+          "itemId": null,
+          "text": "归还申请单管理",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": true,
+          "classPath": "returnApplication",
+          "url": "returnApplication",
+          "type": "menu",
+          "parentId": "1088",
+          "children": null
+        },
+        {
+          "id": "1091",
+          "itemId": null,
+          "text": "订单管理",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": false,
+          "classPath": "order",
+          "url": "order",
+          "type": "menu",
+          "parentId": "1088",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "1092",
+      "itemId": null,
+      "text": "集采-基础信息设定",
+      "iconCls": null,
+      "expanded": true,
+      "leaf": false,
+      "classPath": null,
+      "url": "jiCaiBaseManage",
+      "type": "dirt",
+      "parentId": "0",
+      "children": [
+        {
+          "id": "1093",
+          "itemId": null,
+          "text": "集采商商品SKU操作",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": true,
+          "classPath": "collectProductSku",
+          "url": "collectProductSku",
+          "type": "menu",
+          "parentId": "1092",
+          "children": null
+        },
+        {
+          "id": "1094",
+          "itemId": null,
+          "text": "集采商账户余额查询",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": false,
+          "classPath": "collectProviderAmount",
+          "url": "collectProviderAmount",
+          "type": "menu",
+          "parentId": "1092",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "1095",
+      "itemId": null,
+      "text": "集采-采购管理",
+      "iconCls": null,
+      "expanded": true,
+      "leaf": false,
+      "classPath": null,
+      "url": "collectPurchaseManage",
+      "type": "dirt",
+      "parentId": "0",
+      "children": [
+        {
+          "id": "1096",
+          "itemId": null,
+          "text": "集采商品信息查询",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": true,
+          "classPath": "collectProductSearch",
+          "url": "collectProductSearch",
+          "type": "menu",
+          "parentId": "1095",
+          "children": null
+        },
+        {
+          "id": "1098",
+          "itemId": null,
+          "text": "下采购单",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": false,
+          "classPath": "placePurchaseOrder",
+          "url": "placePurchaseOrder",
+          "type": "menu",
+          "parentId": "1095",
+          "children": [
+            {
+              "id": "1132",
+              "itemId": null,
+              "text": "下单采购",
+              "iconCls": null,
+              "expanded": true,
+              "leaf": true,
+              "classPath": null,
+              "url": "com.jinda.scm.api.CommdityBindVopController.queryBindedSkuDetail",
+              "type": "dirt",
+              "parentId": "1098",
+              "children": null
+            }
+          ]
+        },
+        {
+          "id": "1099",
+          "itemId": null,
+          "text": "采购单跟踪",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": false,
+          "classPath": "purchaseTraining",
+          "url": "purchaseTraining",
+          "type": "menu",
+          "parentId": "1095",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "1149",
+      "itemId": null,
+      "text": "拒收管理",
+      "iconCls": null,
+      "expanded": true,
+      "leaf": false,
+      "classPath": "rejectManage",
+      "url": "123",
+      "type": "dirt",
+      "parentId": "0",
+      "children": [
+        {
+          "id": "1150",
+          "itemId": null,
+          "text": "拒收管理",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": true,
+          "classPath": "rejectManager",
+          "url": "123",
+          "type": "menu",
+          "parentId": "1149",
+          "children": null
+        },
+        {
+          "id": "1151",
+          "itemId": null,
+          "text": "质检管理",
+          "iconCls": null,
+          "expanded": true,
+          "leaf": true,
+          "classPath": "qcManager",
+          "url": "123",
+          "type": "menu",
+          "parentId": "1149",
+          "children": null
+        }
+      ]
+    }
+  ],
+  "success": true
+}

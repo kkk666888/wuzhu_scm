@@ -62,6 +62,16 @@ Vue.prototype.enum = enumService
 Vue.prototype.permission = permission
 Vue.prototype.permissionCode = permissionCode
 
+// 权限管理模块用到
+Vue.prototype.$storage = storageService;
+Vue.prototype.$common = commonJs;
+Vue.prototype.$api = apiSerivce;
+Vue.prototype.$alert = alertService;
+Vue.prototype.$myFilter = filters;
+Vue.prototype.$enum = enumService;
+Vue.prototype.$permission = permission;
+Vue.prototype.$permissionCode = permissionCode;
+
 
 /* eslint-disable no-new */
 new Vue({

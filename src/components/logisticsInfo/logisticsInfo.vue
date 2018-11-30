@@ -57,6 +57,7 @@ export default vueJs;
                 max-height: 450px;
                 overflow-y: auto;
                 .item{
+                    &:first-child{color: #ea7f26;}
                     margin-bottom: 10px;
                 }
             }

@@ -1,5 +1,5 @@
 export default {
     getList:{
-        url:'api/scm/vopOrderBill/queryVopOrderBillListByPage'
+        url:'/vopOrderBill/queryVopOrderBillListByPage'
     }
 }

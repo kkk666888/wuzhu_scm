@@ -1,5 +1,5 @@
 export default {
-    getList:{
-        url:'api/scm/orderPurchase/queryWaitPurchaseOrderListByPage'
-    }
-}
+  getList: {
+    url: '/orderPurchase/queryWaitPurchaseOrderListByPage'
+  }
+};

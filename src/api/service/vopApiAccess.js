@@ -1,26 +1,26 @@
 export default {
-    skuSearch:{
-        url:'api/scm/vopApiAccess/skuSearch'
-    },
-    querySkuDetail:{
-        url:'api/scm/vopApiAccess/querySkuDetail'
-    },
-    vopOrderApply:{
-        url:'api/scm/vopApiAccess/vopOrderApply'
-    },
-    doPay:{
-        url:'api/scm/vopApiAccess/doPay'
-    },
-    orderCancel:{
-        url:'api/scm/vopApiAccess/orderCancel'
-    },
-    orderTrack:{
-        url:'api/scm/vopApiAccess/orderTrack'
-    },
-    getBalance:{
-        url:'api/scm/vopApiAccess/getBalance'
-    },
-    orderConfirm:{
-        url:'api/scm/vopApiAccess/orderConfirm'
-    }
-}
+  skuSearch: {
+    url: '/vopApiAccess/skuSearch'
+  },
+  querySkuDetail: {
+    url: '/vopApiAccess/querySkuDetail'
+  },
+  vopOrderApply: {
+    url: '/vopApiAccess/vopOrderApply'
+  },
+  doPay: {
+    url: '/vopApiAccess/doPay'
+  },
+  orderCancel: {
+    url: '/vopApiAccess/orderCancel'
+  },
+  orderTrack: {
+    url: '/vopApiAccess/orderTrack'
+  },
+  getBalance: {
+    url: '/vopApiAccess/getBalance'
+  },
+  orderConfirm: {
+    url: '/vopApiAccess/orderConfirm'
+  }
+};

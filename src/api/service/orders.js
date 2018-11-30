@@ -1,22 +1,21 @@
 export default {
   getList: {
-    url: 'api/scm/orders',
+    url: '/orders',
     method: 'get'
   },
   finish: {
-    url: 'api/scm/orders/finish',
+    url: '/orders/finish',
     method: 'get'
   },
   delay: {
-    url: 'api/scm/orders/delay'
+    url: '/orders/delay'
   },
   status: {
-    url: 'api/scm/orders/status',
+    url: '/orders/status',
     method: 'get'
   },
   buyOut: {
-    hostName: 'core',
-    url: 'wuzhu/order/buyOut/managementBuyout',
-    method:'get'
+    url: '/orders/buyout/management',
+    method: 'get'
   }
 };

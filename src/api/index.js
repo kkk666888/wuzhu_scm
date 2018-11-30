@@ -9,6 +9,16 @@ import commdityBind from './service/commdityBind.js';
 import baskstageManager from './service/baskstageManager.js';
 import orderPurchase from './service/orderPurchase.js';
 import vopOrderBill from './service/vopOrderBill.js';
+import reject from './service/reject'; // 拒收管理
+import instorageReceipt from './service/instorageReceipt'; // 入库单管理
+import qc from './service/qualityCheck'; // 质检
+
+// 系统管理
+import role from './systemManager/characterManager.js';
+import source from './systemManager/sourceManager.js';
+import department from './systemManager/departmentManager.js';
+import user from './systemManager/userManager.js';
+import area from './systemManager/areaManager.js';
 
 const api = {
   login: baseJs.init(login),
@@ -20,7 +30,15 @@ const api = {
   commdityBind: baseJs.init(commdityBind),
   baskstageManager: baseJs.init(baskstageManager),
   orderPurchase: baseJs.init(orderPurchase),
-  vopOrderBill: baseJs.init(vopOrderBill)
+  vopOrderBill: baseJs.init(vopOrderBill),
+  reject: baseJs.init(reject),
+  role: baseJs.init(role),
+  source: baseJs.init(source),
+  department: baseJs.init(department),
+  user: baseJs.init(user),
+  area: baseJs.init(area),
+  receipt: baseJs.init(instorageReceipt),
+  qc: baseJs.init(qc)
 };
 
 export default api;

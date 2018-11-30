@@ -1,16 +1,16 @@
 export default {
   getList: {
-    url: 'api/scm/returnApplyNote',
+    url: '/returnApplyNote',
     method: 'get'
   },
   updateReturnApplyNote: {
-    url: 'api/scm/returnApplyNote/updateReturnApplyNote'
+    url: '/returnApplyNote/updateReturnApplyNote'
   },
   dealNextNode: {
-    url: 'api/scm/returnApplyNote/dealNextNode'
+    url: '/returnApplyNote/dealNextNode'
   },
   getStatus: {
-    url: 'api/scm/returnApplyNote/apply_status',
+    url: '/returnApplyNote/apply_status',
     method: 'get'
   }
 };

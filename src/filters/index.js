@@ -12,7 +12,7 @@ const filters = {
         return value;
     },
     //时间格式化
-    dateFormat(str, fmt = 'yyyy-MM-dd') {
+    dateFormat(str, fmt = 'yyyy-MM-dd hh:mm:ss') {
         return commonService.formatDate(str,fmt);
     },
     //金额格式化

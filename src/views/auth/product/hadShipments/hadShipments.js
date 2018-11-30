@@ -25,7 +25,8 @@ export default {
             return {
                 commodityCategory:'',
                 orderNo:'',
-                customerName:''
+                customerName:'',
+                identifiCode: ''
             }
         },
         //表格配置
@@ -62,7 +63,7 @@ export default {
                     }}
                 ]
             }
-    
+
             return option;
         },
         //获取表格数据
@@ -124,6 +125,6 @@ export default {
         }
     },
     mounted(){
-        
+
     }
 }

@@ -95,11 +95,27 @@ npm run build
 
 ### 更新日志
 
-#### 2018-7.26 by hcg
+#### 2018-9-11 by hcg
+
+- 修复生产环境图片引用路径出错问题
+
+#### 2018-9-5 by hcg
+
+- 添加 vuex 持久化存储，添加 file-saver 文件保存
+
+#### 2018-8-28 by hcg
+
+- table 组件增加获取选中行的 ids
+
+#### 2018-8-23 by hcg
+
+- 修改 common 日期格式化方法，添加 debounce 去抖方法
+
+#### 2018-7-26 by hcg
 
 - 使用 sass-resources-loader 引入 sass 全局变量 common.scss、index.scss
 
-#### 2018-7.25 by hcg
+#### 2018-7-25 by hcg
 
 - 设置页面 title 名称
 - 修改菜单滚动条

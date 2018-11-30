@@ -8,6 +8,9 @@
             <div class="item">
                 <el-button type="primary" icon="el-icon-search" @click="search()">查询</el-button>
             </div>
+            <div class="item float-right">
+                <el-button type="primary" @click="exportExcel()">导出excel</el-button>
+            </div>
         </div>
         <my-table ref="table" :data="tableData" :option="tableOption" :onPaging="getList"></my-table>
 

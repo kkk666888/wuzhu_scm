@@ -53,11 +53,14 @@ export default {
                     { prop:'contactTel',label:'收货人联系方式',width:150 },
                     { prop:'opreate',label:'操作',width:300,fixed:'right', render(h,param){
                         //vopOrderState 0-下单 1-订单已支付 2-订单已取消  10-已确认订单
+                        let row = param.row;
+                        let payDisabled = row.vopOrderState != 0;
+                        let cancelDisabled = row.vopOrderState == 2 || row.vopOrderState == 10;
                         return(
                             <div>
-                                <el-button type="primary" disabled={param.row.vopOrderState!==0} onClick={()=>{thisObj.doPay(param.row)}}>支付确认</el-button>
-                                <el-button type="primary" disabled={param.row.vopOrderState!==0} onClick={()=>{thisObj.orderCancel(param.row)}}>取消采购单</el-button>
-                                <el-button type="primary" onClick={()=>{thisObj.logisticsTracking(param.row)}}>物流追踪</el-button>
+                                <el-button type="primary" disabled={payDisabled} onClick={()=>{thisObj.doPay(row)}}>支付确认</el-button>
+                                <el-button type="primary" disabled={cancelDisabled} onClick={()=>{thisObj.orderCancel(row)}}>取消采购单</el-button>
+                                <el-button type="primary" onClick={()=>{thisObj.logisticsTracking(row)}}>物流追踪</el-button>
                             </div>
                         )
                     }}
@@ -123,7 +126,12 @@ export default {
         orderCancel(item){
             //vopOrderState 0-下单 1-订单已支付 2-订单已取消
             if(item.vopOrderState === 1){
-                this.alert.toast('此订单已支付，不能取消');
+                if(item.vopChannelType === 'JD'){
+                    this.alert.info('请电话联系客服取消订单，客户电话4006066866',{isAutoHide:false});
+                }
+                else{
+                    this.alert.toast('已支付的订单不能取消');
+                }
                 return;
             }
 
@@ -156,7 +164,7 @@ export default {
             this.api.vopApiAccess.orderTrack.send(param,{showLoading:true}).then(res=>{
                 if(res.code==='00'){
                     this.currentItem = item;
-                    this.logisticsDialog.list = res.data || [];
+                    this.logisticsDialog.list = (res.data || []).reverse();
                     this.logisticsDialog.visible = true;
                 }
             })

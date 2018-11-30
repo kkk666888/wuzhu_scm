@@ -1,16 +1,30 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import _import from './importFile.js';
-import productManageRoutes from './productManage.js';
-import giveBackRoutes from './giveBackManage.js';
-import collectBaseRoutes from './collectBaseManage.js';
-import collectPurchaseRoutes from './collectPurchaseManage.js';
-import collectShipmentsRoutes from './collectShipmentsManage.js';
-import collectReceiveRoutes from './collectReceiveManage.js';
-import collectInStorageRoutes from './collectInStorageManage.js';
-import collectRepertoryRoutes from './collectRepertoryManage.js';
-import collectOutStorageRoutes from './collectOutStorageManage.js';
-import collectDeliveryRoutes from './collectDeliveryManage.js';
+
+import authorityManageRoutes from './authorityManage.js'; //权限管理
+
+import productManageRoutes from './productManage.js'; //商品管理
+
+import giveBackRoutes from './giveBackManage.js'; //归还管理
+
+import collectBaseRoutes from './collectBaseManage.js'; //集采-基础信息设定
+
+import collectPurchaseRoutes from './collectPurchaseManage.js'; //集采-采购管理
+
+import collectShipmentsRoutes from './collectShipmentsManage.js'; //集采-发货管理
+
+import collectReceiveRoutes from './collectReceiveManage.js'; //集采-收货管理
+
+import collectInStorageRoutes from './collectInStorageManage.js'; //集采-入库管理
+
+import collectRepertoryRoutes from './collectRepertoryManage.js'; //集采-库存管理
+
+import collectOutStorageRoutes from './collectOutStorageManage.js'; //集采-出库管理
+
+import collectDeliveryRoutes from './collectDeliveryManage.js'; //集采-送货管理
+
+import rejectRoutes from './rejectManage.js'; // 拒收管理
 
 Vue.use(Router);
 
@@ -51,27 +65,35 @@ let authorityRoutes = {
   ]
 };
 
-authorityRoutes.children = authorityRoutes.children.concat(productManageRoutes); //商品管理
-authorityRoutes.children = authorityRoutes.children.concat(giveBackRoutes); //归还管理
-authorityRoutes.children = authorityRoutes.children.concat(collectBaseRoutes); //集采-基础信息设定
-authorityRoutes.children = authorityRoutes.children.concat(collectPurchaseRoutes); //集采-采购管理
-authorityRoutes.children = authorityRoutes.children.concat(collectDeliveryRoutes); //集采-送货管理
-authorityRoutes.children = authorityRoutes.children.concat(collectShipmentsRoutes); //集采-发货管理
-authorityRoutes.children = authorityRoutes.children.concat(collectReceiveRoutes); //集采-收货管理
-authorityRoutes.children = authorityRoutes.children.concat(collectInStorageRoutes); //集采-入库管理
-authorityRoutes.children = authorityRoutes.children.concat(collectOutStorageRoutes); //集采-出库管理
-authorityRoutes.children = authorityRoutes.children.concat(collectRepertoryRoutes); //集采-库存管理
+authorityRoutes.children = [
+  ...authorityRoutes.children,
+  ...authorityManageRoutes,
+  ...productManageRoutes,
+  ...giveBackRoutes,
+  ...collectBaseRoutes,
+  ...collectPurchaseRoutes,
+  ...collectDeliveryRoutes,
+  ...collectShipmentsRoutes,
+  ...collectReceiveRoutes,
+  ...collectInStorageRoutes,
+  ...collectOutStorageRoutes,
+  ...collectRepertoryRoutes,
+  ...rejectRoutes
+];
 
 routes.push(authorityRoutes);
 routes.push({ path: '*', redirect: '/404', meta: { hidden: true } });
 const router = new Router({ routes: routes });
 
 router.beforeEach((to, from, next) => {
+  // console.log('to', to);
+  // console.log('from', from);
+
   let app = router.app;
   let store = app.$store;
   if (to.meta.authority) {
     let resources = app.storage.session.getObj(app.common.storageKey.resources);
-    let token = app.storage.cookie.get('SCMTK');
+    let token = app.$storage.cookie.get('tokenStr');
     if (resources && token) {
       //页面刷新处理
       if (!store.state.main.isHandleData) {

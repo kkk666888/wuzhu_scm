@@ -60,8 +60,8 @@ export default {
                     { prop:'receiveName',label:'客户姓名',width:120 },
                     { prop:'customerAddress',label:'客户地址',width:300 },
                     { prop:'receiveTel',label:'电话',width:120 },
-                    { prop:'stockCode',label:'识别码',width:150},
-                    { prop:'stockNo',label:'库存码',width:200},
+                    { prop:'identifiCode',label:'识别码',width:200},
+                    { prop:'stockCode',label:'库存码',width:150},
                     { prop:'vendorName',label:'供应商',width:150},
                     { prop:'operate',label:'操作',fixed:'right',width:300,render(h,param){
                         return(

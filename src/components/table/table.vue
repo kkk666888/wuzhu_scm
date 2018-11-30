@@ -43,7 +43,7 @@
                     :resizable="false"
                     :fixed="column.fixed">
                     <template slot-scope="scope">
-                        <my-render 
+                        <my-render
                             v-if="column.render" 
                             :row="scope.row" 
                             :index="scope.$index"
@@ -77,6 +77,7 @@ export default tableJs;
 
 <style lang="scss">
     .table-main{
+        clear: both;
         .el-table{width: 100%;
             .column-radio{
                 .el-radio__label{display: none;}

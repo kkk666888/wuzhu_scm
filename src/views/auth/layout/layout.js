@@ -18,11 +18,15 @@ export default {
         active: ''
       },
       isZhankuai: true,
-      userInfo:{}
+      userInfo: {
+        loginName: '',
+        realName: '',
+        id: ''
+      }
     };
   },
   computed: {
-    ...mapGetters(['get_permission_menus']),
+    ...mapGetters(['get_permission_menus', 'get_user_info']),
     include() {
       let value = '';
 
@@ -50,7 +54,19 @@ export default {
     //退出登录
     loginOut() {
       this.common.logonOut();
-      this.$router.push({ name: 'login' });
+      this.logOutFetch();
+    },
+    async logOutFetch() {
+      let param = {};
+      try {
+        let res = await this.$api.login.logOut.send(param, { showLoading: true });
+        if (res.code === '00') {
+          this.$alert.toast('退出成功', { autoHideTimeout: 2000 });
+          this.$router.push({ name: 'login' });
+        }
+      } catch (error) {
+        this.$alert.error(`${error.message},请稍后重试`);
+      }
     },
     //菜单单击事件
     menuClick(item) {
@@ -186,7 +202,8 @@ export default {
     this.tabContainer = document.getElementById('tabContainer');
     this.setCurrentMenuWhenRefresh();
     this.bindTabScroll();
-    this.userInfo = this.storage.session.getObj(this.common.storageKey.userInfo) || {};
+
+    this.userInfo = { ...this.get_user_info };
   },
   watch: {}
 };
