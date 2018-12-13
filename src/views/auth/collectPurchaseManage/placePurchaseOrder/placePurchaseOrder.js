@@ -1,3 +1,5 @@
+import ExportFile from '@/utils/export';
+
 //下采购单
 export default {
     name:'placePurchaseOrder',
@@ -40,6 +42,25 @@ export default {
         reset(){
             this.searchModel = this.initSearchModel();
             this.$refs.table.refreshPaging(1);
+        },
+        // 导出
+        async exportWaitPurchaseOrderList() {
+            let param = {
+                commdityNo:this.searchModel.commdityNo,
+                shortName:this.searchModel.shortName,
+                orderNo:this.searchModel.orderNo,
+                customerName:this.searchModel.customerName
+            };
+            try {
+            const res = await this.api.orderPurchase.exportWaitPurchaseOrderList.send(param, { showLoading: true });
+            if (res.code === '00') {
+                this.$alert.toast('导出中', { autoHideTimeout: 2000 });
+                let date = new Date().toLocaleDateString();
+                ExportFile(res.data, `采购下单${date}`);
+            }
+            } catch (error) {
+            console.log(error);
+            }
         },
         //表格配置
         getTableOption(){

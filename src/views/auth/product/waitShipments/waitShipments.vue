@@ -5,6 +5,15 @@
             <div class="item">
                 <label>商品品类：</label>
                 <el-input v-model="searchModel.commodityCategory" placeholder="请输入" :maxlength="50"></el-input>
+                <label>订单来源：</label>
+                <el-select v-model="searchModel.orderSource" clearable placeholder="请选择">
+                    <el-option
+                        v-for="item in searchModel.orderSources"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                    </el-option>
+                </el-select>
             </div>
             <div class="item">
                 <el-button type="primary" icon="el-icon-search" @click="search()">查询</el-button>
@@ -85,8 +94,8 @@
                         </div>
                     </div>
                     <div class="form-item">
-                            <label>客户地址：</label>
-                            <el-input v-model="addressDialog.customerAddress" class="address-input" type="text" :maxlength="255"></el-input>
+                        <label>客户地址：</label>
+                        <el-input v-model="addressDialog.customerAddress" class="address-input" type="text" :maxlength="255"></el-input>
                     </div>
                 </div>
             </div>
@@ -108,7 +117,7 @@
                         <el-select v-model="offlineDeliverDialog.logisticsCompany">
                             <el-option label="请选择物流公司" value=""></el-option>
                             <el-option
-                                v-for="item in logisticsCompanyList" 
+                                v-for="item in logisticsCompanyListOffLine" 
                                 :key="item.value"
                                 :label="item.text"
                                 :value="item.value">

@@ -114,7 +114,7 @@ export default {
                 commodityCategory:this.searchModel.commodityCategory,
                 orderNo:this.searchModel.orderNo,
                 stockNo:this.searchModel.stockNo,
-                vendorName:this.searchModel.stockNo,
+                vendorName:this.searchModel.vendorName,
                 stockStatus:this.searchModel.stockStatus
             }
 

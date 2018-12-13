@@ -26,5 +26,8 @@ export default {
   },
   confirmCollectgoods: {
     url: '/logistic/goods/confirmCollectgoods'
+  },
+  exportAllSendedInfo: {
+    url: '/logistic/exportAllSendedInfo'
   }
 };

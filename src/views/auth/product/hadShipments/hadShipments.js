@@ -1,4 +1,5 @@
 //已发货管理
+import ExportFile from '@/utils/export';
 import myLogisticsInfo from '@/components/logisticsInfo/logisticsInfo.vue';
 export default {
     name:'hadShipments',
@@ -26,7 +27,8 @@ export default {
                 commodityCategory:'',
                 orderNo:'',
                 customerName:'',
-                identifiCode: ''
+                identifiCode: '',
+                deliverTime: ''
             }
         },
         //表格配置
@@ -53,6 +55,7 @@ export default {
                     { prop:'expressCompanyName',label:'物流公司',width:100},
                     { prop:'stockStatusName',label:'物流状态',width:100},
                     { prop:'deliveryOrderNo',label:'运单号',width:150},
+                    { prop:'deliverTime',label:'发货时间',width:150},
                     { prop:'operate',label:'操作',fixed:'right',width:220,render(h,param){
                         return(
                             <div>
@@ -73,7 +76,12 @@ export default {
                 pageSize:pageInfo.pageSize,
                 commodityCategory:this.searchModel.commodityCategory,
                 orderNo:this.searchModel.orderNo,
-                customerName:this.searchModel.customerName
+                customerName:this.searchModel.customerName,
+                identifiCode:this.searchModel.identifiCode
+            }
+            if (this.searchModel.deliverTime){
+                param['deliverTimeStart'] = this.searchModel.deliverTime[0]
+                param['deliverTimeEnd'] = this.searchModel.deliverTime[1]
             }
 
             this.api.logistic.getAllSendedInfo.send(param,{showLoading:true}).then(res=>{
@@ -117,11 +125,55 @@ export default {
             })
             this.api.logistic.printerWayBill.send(stockNos,{showLoading:true}).then(res=>{
                 if(res.code==='00'){
-                    let msg = '打印成功 ' + res.data.successNum + ' 个,打印失败 ' + res.data.failNum + ' 个';
-                    this.alert.info(msg);
-                    this.$refs.table.refreshPaging();
+                    let msg = '打印成功 ' + res.data.successNum + ' 个,打印失败 ' + res.data.failNum + ' 个.\n' ;
+                    let htmlMsg = '';
+                    res.data.messages.forEach(item =>{
+                        if(item.printStatus === 'SUCCESS'){
+                            htmlMsg = htmlMsg + "<img style='width:48%' src='data:image/jpeg;base64," + item.printMessage + "'/>";
+                        }
+
+                        else if(item.printStatus === 'FAIL'){
+                            htmlMsg = htmlMsg + item.printMessage + "<br>";
+                        }
+                    })
+
+                    this.$confirm(htmlMsg, msg, {
+                        dangerouslyUseHTMLString: true,
+                        center: true,
+                        lockScroll: true
+                      });
+
+                    // this.$confirm(msg , {
+                    //     confirmButtonText: '确定',
+                    //     type: 'info'
+                    // }).then(() => {
+                    // }).catch(() => {      
+                    // })
                 }
             })
+        },
+        async exportExcel(){
+            let param = {
+                commodityCategory:this.searchModel.commodityCategory,
+                orderNo:this.searchModel.orderNo,
+                customerName:this.searchModel.customerName,
+                identifiCode:this.searchModel.identifiCode
+            }
+            if (this.searchModel.deliverTime){
+                param['deliverTimeStart'] = this.searchModel.deliverTime[0]
+                param['deliverTimeEnd'] = this.searchModel.deliverTime[1]
+            }
+            try {
+              const res = await this.$api.logistic.exportAllSendedInfo.send(param, { showLoading: true });
+              if (res.code === '00') {
+                this.$alert.toast('导出中', { autoHideTimeout: 2000 });
+                let date = new Date().toLocaleDateString();
+                ExportFile(res.data, `已发货清单${date}`);
+              }
+            } catch (error) {
+              console.log(error);
+            }
+
         }
     },
     mounted(){

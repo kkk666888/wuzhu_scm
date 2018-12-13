@@ -35,6 +35,13 @@ const productManageRoutes = [
     name: 'InStorageReceipt',
     component: () => _import('auth/product/InStorageReceipt/InStorageReceipt'),
     meta: { authority: true, routeTab: true, code: 'InStorageReceipt' }
+  },
+  {
+    //出库单管理
+    path: 'outStorageReceipt',
+    name: 'outStorageReceipt',
+    component: () => _import('auth/product/outStorageReceipt/outStorageReceipt'),
+    meta: { authority: true, routeTab: true, code: 'outStorageReceipt' }
   }
 ];
 

@@ -102,6 +102,10 @@ export default {
             value: 'THRK'
           },
           {
+            text: '门店入库',
+            value: 'MDRK'
+          },
+          {
             text: '其它入库',
             value: 'QTRK'
           }
@@ -179,9 +183,12 @@ export default {
                 case 'GHRK':
                   type = '归还入库';
                   break;
-                case 'THRK':
-                  type = '退货入库';
-                  break;
+                  case 'THRK':
+                    type = '退货入库';
+                    break;
+                  case 'MDRK':
+                    type = '门店入库';
+                    break;
                 case 'QTRK':
                   type = '其它入库';
                   break;

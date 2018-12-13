@@ -8,7 +8,7 @@
           <el-select v-if="item.type === 'select'" placeholder="请选择" v-model="searchModel[item.name]">
             <el-option v-for="(opItem,opIndex) in searchOptions[item.list]" :key="opIndex" :label="opItem.text" :value="opItem.value"></el-option>
           </el-select>
-          <el-date-picker v-if="item.type === 'daterange'" v-model="searchModel[item.name]" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+          <el-date-picker v-if="item.type === 'daterange'" v-model="searchModel[item.name]" type="daterange" value-format="yyyy-MM-dd" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
           </el-date-picker>
         </el-form-item>
         <el-form-item>

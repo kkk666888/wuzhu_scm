@@ -114,6 +114,17 @@ const alertService = {
         alertOption = common.deepMerge(alertOption,option || {});
         let instance = this.create(alertOption);
         instance.show();
+    },
+    confirmInfo(msg,option){
+        let alertOption = {
+            headerTxt:'确认提示',
+            bodyTxt:msg,
+            type:9
+        }
+
+        alertOption = common.deepMerge(alertOption,option || {});
+        let instance = this.create(alertOption);
+        instance.show();
     }
 }
 

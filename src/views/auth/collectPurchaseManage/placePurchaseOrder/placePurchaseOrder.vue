@@ -20,6 +20,7 @@
             <div class="item">
                 <el-button type="primary" icon="el-icon-search" @click="search()">查询</el-button>
                 <el-button @click="reset()">重置</el-button>
+                <el-button @click="exportWaitPurchaseOrderList()">导出</el-button>
             </div>
         </div>
 

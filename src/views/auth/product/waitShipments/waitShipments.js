@@ -30,7 +30,8 @@ export default {
                 signUser:'',
                 item:null
             },
-            logisticsCompanyList:this.enum.logisticsCompanyList
+            logisticsCompanyList:this.enum.logisticsCompanyList,
+            logisticsCompanyListOffLine:this.enum.logisticsCompanyListOffLine,
         }
     },
     methods:{
@@ -40,7 +41,16 @@ export default {
         },
         initSearchModel(){
             return {
-                commodityCategory:''
+                commodityCategory:'',
+                orderSource: '',
+                orderSources: [{
+                    value: 'ONLINE',
+                    label: '线上'
+                },
+                {
+                    value: 'STORE',
+                    label: '门店'
+                }]
             }
         },
         //表格配置
@@ -52,6 +62,8 @@ export default {
                 showCheck:true,
                 columns:[
                     { prop:'orderNo',label:'订单编号',width:200 },
+                    { prop:'orderSource',label:'订单来源',width:100 },
+                    { prop:'orderSourceNo',label:'来源编号',width:100 },
                     { prop:'commodityNo',label:'商品编号',width:100 },
                     { prop:'commodityType',label:'商品类型',width:120 },
                     { prop:'brandName',label:'商品品牌',width:120 },
@@ -82,7 +94,8 @@ export default {
             let param = {
                 pageNum:pageInfo.pageIndex,
                 pageSize:pageInfo.pageSize,
-                commodityCategory:this.searchModel.commodityCategory || null
+                commodityCategory:this.searchModel.commodityCategory || null,
+                orderSource: this.searchModel.orderSource || null
             }
 
             this.api.logistic.getAllSendingInfo.send(param,{showLoading:true}).then(res=>{
@@ -99,8 +112,31 @@ export default {
                 this.alert.toast('请选择需要发货的订单');
                 return;
             }
-            this.deliverDialog.visible = true;
-            this.deliverDialog.logisticsCompanyValue = '';
+            let orders = ''
+            rows.forEach(row => {
+                if(row.orderSource !== '线上'){
+                    orders = orders + '\n' + row.orderNo
+                }
+            })
+            
+            if (orders.length == 0) {
+                this.deliverDialog.visible = true;
+                this.deliverDialog.logisticsCompanyValue = '';
+            } else {
+                this.$confirm(orders + '\n为非线上订单，是否继续？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.deliverDialog.visible = true;
+                    this.deliverDialog.logisticsCompanyValue = '';
+                }).catch(() => {
+                    this.$message({
+                      type: 'info',
+                      message: '已取消发货'
+                    });         
+                })
+            }
         },
         //确认发货保存
         deliverSave(){
@@ -177,10 +213,28 @@ export default {
         },
         //线下发货
         offlineDeliver(item){
-            this.offlineDeliverDialog.visible = true;
-            this.offlineDeliverDialog.item = item;
-            this.offlineDeliverDialog.deliveryOrderNo = '';
-            this.offlineDeliverDialog.logisticsCompany = '';
+            if (item.orderSource === '线上') {
+                this.offlineDeliverDialog.visible = true;
+                this.offlineDeliverDialog.item = item;
+                this.offlineDeliverDialog.deliveryOrderNo = ''
+                this.offlineDeliverDialog.logisticsCompany = ''
+            } else {
+                this.$confirm('该订单为非线上订单，是否继续？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.offlineDeliverDialog.visible = true;
+                    this.offlineDeliverDialog.item = item;
+                    this.offlineDeliverDialog.deliveryOrderNo = ''
+                    this.offlineDeliverDialog.logisticsCompany = ''
+                }).catch(() => {
+                    this.$message({
+                      type: 'info',
+                      message: '已取消发货'
+                    });         
+                })
+            }
         },
         //线下发货保存
         offlineDeliverSave(){

@@ -7,6 +7,18 @@ export default {
     return {
       tableData: [],
       statusList: [],
+      allocateStatus: [
+        {
+          code: '-1',
+          name: '未配货'
+        },{
+          code: '0',
+          name: '配货失败'
+        },{
+          code: '1',
+          name: '配货成功'
+        },
+      ],
       tableOption: this.getTableOption(),
       searchModel: this.initSearchModel(),
       feeTableData: [],
@@ -47,7 +59,8 @@ export default {
       return {
         orderNo: '',
         customerName: '',
-        status: ''
+        status: '',
+        allocateStatus: ''
       };
     },
     //重置
@@ -63,11 +76,14 @@ export default {
         autoHeight: true,
         showSerial: true,
         columns: [
-          { prop: 'orderNo', label: '订单编号', width: 220 },
-          { prop: 'statusName', label: '订单状态', width: 150 },
-          { prop: 'customerName', label: '客户姓名', width: 150 },
+          { prop: 'orderNo', label: '订单编号', width: 200 },
+          { prop: 'statusName', label: '订单状态', width: 100 },
+          { prop: 'customerName', label: '客户姓名', width: 100 },
           { prop: 'typeName', label: '商品类型', width: 150 },
-          { prop: 'shortName', label: '商品短名称', width: 300 },
+          { prop: 'shortName', label: '商品短名称', width: 160 },
+          { prop: 'orderType', label: '是否为"续租订单"', width: 150 },
+          { prop: 'rootOrderNo', label: '原订单编号', width: 150 },
+          { prop: 'allocateStatus', label: '配货状态', width: 120 },
           { prop: 'specContentList', label: '商品规格' },
           {
             prop: 'opreate',
@@ -207,7 +223,8 @@ export default {
         pageSize: pageInfo.pageSize,
         orderNo: this.searchModel.orderNo || null,
         customerName: this.searchModel.customerName || null,
-        status: this.searchModel.status || null
+        status: this.searchModel.status || null,
+        allocateStatus: this.searchModel.allocateStatus || null
       };
 
       this.api.orders.getList.send(param, { showLoading: true }).then(res => {

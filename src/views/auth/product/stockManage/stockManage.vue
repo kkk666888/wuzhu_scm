@@ -14,6 +14,10 @@
                 <el-input v-model="searchModel.orderNo" placeholder="请输入" :maxlength="50"></el-input>
             </div>
             <div class="item">
+                <label>库存编号：</label>
+                <el-input v-model="searchModel.stockNo" placeholder="请输入" :maxlength="50"></el-input>
+            </div>
+            <div class="item">
                 <label>库存状态：</label>
                 <el-select v-model="searchModel.stockStatus">
                     <el-option label="请选择" value=""></el-option>

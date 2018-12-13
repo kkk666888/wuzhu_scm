@@ -11,6 +11,7 @@ import orderPurchase from './service/orderPurchase.js';
 import vopOrderBill from './service/vopOrderBill.js';
 import reject from './service/reject'; // 拒收管理
 import instorageReceipt from './service/instorageReceipt'; // 入库单管理
+import outstorageReceipt from './service/outstorageReceipt'; // 出库单管理
 import qc from './service/qualityCheck'; // 质检
 
 // 系统管理
@@ -38,6 +39,7 @@ const api = {
   user: baseJs.init(user),
   area: baseJs.init(area),
   receipt: baseJs.init(instorageReceipt),
+  outstorageReceipt: baseJs.init(outstorageReceipt),
   qc: baseJs.init(qc)
 };
 

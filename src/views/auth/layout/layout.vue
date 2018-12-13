@@ -34,9 +34,7 @@
           </div>
         </div>
         <transition name="fade" mode="out-in">
-          <keep-alive :include="include">
             <router-view class="router-view" />
-          </keep-alive>
         </transition>
       </div>
     </div>

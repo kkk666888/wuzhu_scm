@@ -17,6 +17,13 @@
         </el-select>
       </div>
       <div class="item">
+        <label>配货状态：</label>
+        <el-select v-model="searchModel.allocateStatus" placeholder="请选择">
+          <el-option label="全部" value=""></el-option>
+          <el-option v-for="item in allocateStatus" :key="item.code" :label="item.name" :value="item.code"></el-option>
+        </el-select>
+      </div>
+      <div class="item">
         <el-button type="primary" icon="el-icon-search" @click="search">查询</el-button>
         <el-button @click="reset">重置</el-button>
       </div>
