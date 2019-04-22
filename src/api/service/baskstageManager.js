@@ -30,5 +30,9 @@ export default {
   },
   updateStockCommodityNoAndGoodId: {
     url: '/baskstageManager/goods/updateStockCommodityNoAndGoodId'
+  },
+  updatexnCommodityInfo: {
+    url: '/baskstageManager/goods/updatexnCommodityInfo'
   }
+  
 };

@@ -2,8 +2,14 @@ export default {
   getAllSendingInfo: {
     url: '/logistic/getAllSendingInfo'
   },
+  exportAllSendingInfo: {
+    url: '/logistic/exportAllSendingInfo'
+  },
   confirmSendCommodity: {
     url: '/logistic/confirmSendCommodity'
+  },
+  sendRouter: {
+    url: '/logistic/sendRouter'
   },
   comfirmSelfExtraction: {
     url: '/logistic/comfirmSelfExtraction'

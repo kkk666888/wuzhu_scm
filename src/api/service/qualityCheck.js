@@ -16,5 +16,22 @@ export default {
   },
   export: {
     url: '/inspections/inspectionExports'
+  },
+  uploadFileToOss: {
+    url: '/commons/uploadFileToOss'
+  },
+  addFilesInfo: {
+    url: '/commons/addFilesInfo'
+  },
+  getAliOssProfile: {
+    url: '/commons/getAliOssProfile'
+  },
+
+  orderQCVedioToLink: {
+    url: '/commons/orderQCVedioToLink'
+  },
+  orderDeliverVedioToLink: {
+    url: '/commons/orderDeliverVedioToLink'
   }
+  
 };

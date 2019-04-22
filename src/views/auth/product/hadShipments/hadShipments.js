@@ -15,6 +15,14 @@ export default {
                 visible:false,
                 orderItem:null,
                 trackNumber:''
+            },
+            deliverDialog: {
+                visible: false,
+                confirmDate: '',
+                confirmTime: ''
+            },
+            selectRow: {
+
             }
         }
     },
@@ -60,7 +68,7 @@ export default {
                         return(
                             <div>
                                 <el-button type="primary" onClick={()=>{thisObj.logisticsTracking(param.row)}}>查看物流信息</el-button>
-                                <el-button type="primary" onClick={()=>{thisObj.confirmDelivery(param.row)}}>确认收货</el-button>
+                                <el-button type="primary" disabled={param.row.stockStatusName==='已签收'} onClick={()=>{thisObj.confirmDelivery(param.row)}}>确认收货</el-button>
                             </div>
                         )
                     }}
@@ -99,20 +107,54 @@ export default {
         },
         // 确认收货
         confirmDelivery(row){
-            let thisObj = this;
-            thisObj.alert.confirm('确认已收货？',{
-                onConfirm(){
-                    let param = {
-                        stockNo:row.stockNo
-                    }
-                    thisObj.api.logistic.confirmCollectgoods.send(param,{showLoading:true}).then(res=>{
-                        if(res.code==='00'){
-                            thisObj.$refs.table.refreshPaging();
-                        }
-                    })
-                }
-            })
+            this.deliverDialog.visible = true;
+            this.deliverDialog.confirmDate = '';
+            this.deliverDialog.confirmTime = '';
+            this.selectRow = row
+
+            // thisObj.alert.confirm('确认已收货？',{
+            //     onConfirm(){
+            //         let param = {
+            //             stockNo:row.stockNo
+            //         }
+            //         thisObj.api.logistic.confirmCollectgoods.send(param,{showLoading:true}).then(res=>{
+            //             if(res.code==='00'){
+            //                 thisObj.$refs.table.refreshPaging();
+            //             }
+            //         })
+            //     }
+            // })
         },
+        // 确认保存
+        confirmSave(){
+            let thisObj = this;
+            if(this.deliverDialog.confirmDate){
+                let param = {
+                    stockNo:this.selectRow.stockNo,
+                    confirmDate:this.deliverDialog.confirmDate,
+                    confirmTime:this.deliverDialog.confirmTime
+                }
+                thisObj.api.logistic.confirmCollectgoods.send(param,{showLoading:true}).then(res=>{
+                    if(res.code==='00'){
+                        thisObj.$refs.table.refreshPaging();
+                        this.deliverDialog.visible = false;
+                        this.selectRow = {}
+                    }
+                })
+            }else{
+                this.$message({
+                    message: '请输入确认收货日期！',
+                    type: 'warning'
+                  });
+            }
+            
+        },
+        // 取消保存
+        cancelSave(){
+            this.deliverDialog.visible = false;
+            this.selectRow = {}
+        },
+        // 打印
         print(){
             let rows = this.$refs.table.getSelectedRows();
             if(rows.length===0){
@@ -142,13 +184,6 @@ export default {
                         center: true,
                         lockScroll: true
                       });
-
-                    // this.$confirm(msg , {
-                    //     confirmButtonText: '确定',
-                    //     type: 'info'
-                    // }).then(() => {
-                    // }).catch(() => {      
-                    // })
                 }
             })
         },

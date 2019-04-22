@@ -12,12 +12,13 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/scm': {
-        // target: 'http://10.35.40.114:8101', // 泉涌
+        target: 'http://localhost:8101', // 泉涌
         // target: 'http://10.35.90.9:8101', // 海军
         // target: 'http://10.35.40.21:8101', // 钱毅
         // target: 'http://10.35.90.110:8101',  // 品欣
         // target: 'http://10.35.40.141:8101', // 毛总
-        target: 'https://wuzhutes.woozhu.cn:50047/',
+        //target: 'https://wuzhusle.woozhu.cn/',
+        // target: 'https://wuzhutes.woozhu.cn:50047/',
         changeOrigin: true,
         pathRewrite: {
           '^/scm': '/scm'

@@ -1,7 +1,7 @@
 .my-tree-main{
     .tree-item{
-        color: #a7bfe9;
-        height: 42px;line-height: 42px;padding:0 14px;border-bottom: 1px solid #2a3d52;
+        color: hsl(210, 9%, 73%);
+        height: 42px;line-height: 42px;padding:0 14px;border-bottom: 1px solid #001529;
         cursor: pointer;
 
         &:hover{background-color:#233345;}
@@ -18,7 +18,7 @@
     }
 
     .tree-item-child-active{
-        background-color: #515f72;color: white;
+        background-color: #001529;color: white;
         position: relative;
 
         &::after{

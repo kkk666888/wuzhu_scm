@@ -26,15 +26,20 @@
         <div id="indexTabs" class="index-tabs">
           <div id="tabContainer" class="tab-container">
             <span class="tab-item" :class="{'tab-item-active':routeTabs.active === item.name}" v-for="item in routeTabs.data" :key="item.id" @click="tabClick(item)">
+              <span v-if="item.name!='index'" class="span-star" :class="{'span-star-active':routeTabs.active === item.name}">
+                <i class="el-icon-more"></i>
+              </span>
               {{item.label}}
-              <span v-if="item.name!='index'" class="span-close" @click="tabRemove($event,item)">
+              <span v-if="item.name!='index'" class="span-close" :class="{'span-close-active':routeTabs.active === item.name}" @click="tabRemove($event,item)">
                 <i class="el-icon-close"></i>
               </span>
             </span>
           </div>
         </div>
         <transition name="fade" mode="out-in">
+          <keep-alive :include="include">
             <router-view class="router-view" />
+          </keep-alive>
         </transition>
       </div>
     </div>

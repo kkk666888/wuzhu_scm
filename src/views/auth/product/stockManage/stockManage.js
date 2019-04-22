@@ -1,3 +1,5 @@
+
+import ExportFile from '@/utils/export';
 //入库管理
 export default {
     name:'inStorage',
@@ -18,7 +20,17 @@ export default {
                 item:null,
                 commodityNo:'',
                 goodsId:''
-            }
+            },
+            // 虚拟库存修改
+            updatexnDialog:{
+                visible:false,
+                item:null,
+                commodityNo:'',
+                goodsId:''
+            },
+
+            importFile: null,
+            importUrl: this.$common.getUploadURL('/baskstageManager/import-commodity-goods'),
         }
     },
     methods:{
@@ -77,15 +89,17 @@ export default {
                     { prop:'commodityCategory',label:'商品品类',width:200 },
                     { prop:'commodityType',label:'商品类型',width:80 },
                     { prop:'brandName',label:'商品品牌',width:80 },
-                    { prop:'commodityAttr',label:'规格属性',width:250 },
+                    { prop:'commodityAttr',label:'规格属性',width:220 },
                     { prop:'buyPrice',label:'进货价',width:100},
+                    { prop:'ratio',label:'税率',width:100},
                     { prop:'stockStatusName',label:'状态',width:120},
-                    { prop:'operate',label:'操作', fixed:'right', width:395,render(h,param){
+                    { prop:'operate',label:'操作', fixed:'right', width:420,render(h,param){
                         return(
                             <div>
-                                <el-button type="primary" disabled={param.row.stockStatus!=='0'} onClick={()=>{thisObj.deletStock(param.row)}}>删除库存</el-button>
-                                <el-button type="primary" onClick={()=>{thisObj.collectOpen(param.row)}}>汇总统计</el-button>
-                                <el-button type="primary" onClick={()=>{thisObj.updateOpen(param.row)}}>修改库存识别码或者商品编号</el-button>
+                                <el-button type="primary" disabled={param.row.stockStatus!=='0'} onClick={()=>{thisObj.deletStock(param.row)}}>删除</el-button>
+                                <el-button type="primary" onClick={()=>{thisObj.collectOpen(param.row)}}>统计</el-button>
+                                <el-button type="primary" disabled={param.row.stockType !=='2'} onClick={()=>{thisObj.updatexnOpen(param.row)}}>虚拟库存调整</el-button>
+                                <el-button type="primary" onClick={()=>{thisObj.updateOpen(param.row)}}>修改识别码/商品编号</el-button>
                             </div>
                         )
                     }}
@@ -115,7 +129,8 @@ export default {
                 orderNo:this.searchModel.orderNo,
                 stockNo:this.searchModel.stockNo,
                 vendorName:this.searchModel.vendorName,
-                stockStatus:this.searchModel.stockStatus
+                stockStatus:this.searchModel.stockStatus,
+                goodsId:this.searchModel.goodsId
             }
 
             this.api.baskstageManager.getBaskStageStockInfoVO.send(param,{showLoading:true}).then(res=>{
@@ -162,6 +177,18 @@ export default {
             this.updateDialog.commodityNo = item.commodityNo;
             this.updateDialog.goodsId = item.goodsId;
         },
+        updatexnOpen(item){
+            this.updatexnDialog.visible = true;
+            this.updatexnDialog.item = item;
+
+            this.updatexnDialog.commodityNo = item.commodityNo;
+            this.updatexnDialog.commodityCategory = item.commodityCategory;
+            this.updatexnDialog.buyPrice = item.buyPrice;
+            this.updatexnDialog.goodsId = item.goodsId;
+            this.updatexnDialog.vendorName = item.vendorName;
+            this.updatexnDialog.ratio = item.ratio;
+        },
+        
         updateSave(){
             if(!this.updateDialog.goodsId){
                 this.alert.toast('请输入货物识别码（串码）');
@@ -183,6 +210,50 @@ export default {
                     this.$refs.table.refreshPaging();
                 }
             })
+        },
+        // 更新虚拟入库
+        updatexnSave(){
+            if(!this.updatexnDialog.goodsId){
+                this.alert.toast('请输入货物识别码（串码）');
+                return;
+            }
+            if(!this.updatexnDialog.commodityNo){
+                this.alert.toast('请输入商品编号');
+                return;
+            }
+            let param = {
+                commodityNo : this.updatexnDialog.commodityNo,
+                stockNo:this.updatexnDialog.item.stockNo,
+                buyPrice :this.updatexnDialog.buyPrice,
+                goodsId : this.updatexnDialog.goodsId,
+                vendorName : this.updatexnDialog.vendorName,
+                ratio : this.updatexnDialog.ratio
+            }
+            // 检查数据
+            this.api.baskstageManager.updatexnCommodityInfo.send(param,{
+                showLoading:true
+            }).then(res=>{
+                if(res.code==='00'){
+                    this.updatexnDialog.visible = false;
+                    this.$refs.table.refreshPaging();
+                    this.alert.toast("数据更新成功");
+                }else{
+                    this.alert.toast(res.msg);
+                }
+            })
+        },
+
+
+        // 导入
+        importData(res, file) {
+            // console.log(res, file);
+            let name = file.name.split('.')[0];
+            if (res.code === '00') {
+                this.$alert.toast('导入成功');
+                this.$refs.table.refreshPaging();
+            } else if (res.code === '1000') {
+                ExportFile(res.data, `${name}-错误`);
+            }
         }
     },
     mounted(){

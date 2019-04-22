@@ -30,10 +30,21 @@
                 <el-button type="primary" icon="el-icon-download" @click="exportExcel()">导出</el-button>
             </div>            
             <div class="item" style="float:left">
-                <el-button type="primary" @click="print()">批量打印印单号</el-button>
+                <!-- <el-button type="primary" @click="print()">批量打印印单号</el-button> -->
             </div>
         </div>
         <my-table ref="table" :data="tableData" :option="tableOption" :onPaging="getList"></my-table>
+
+        <!-- 确认收货 弹出框 -->
+        <my-dialog title='确认收货' :visible.sync='deliverDialog.visible' @onConfirm="confirmSave()" @onClose="cancelSave()">
+            <div style="padding:20px 20px 0 20px">
+                是否确认收货？确认请选择收货时间：
+            </div>
+            <div style="padding:20px 20px 20px 20px">
+                <el-date-picker v-model="deliverDialog.confirmDate" value-format="yyyy-MM-dd" type="date" placeholder="选择确认收货日期"></el-date-picker>
+                <el-time-picker v-model="deliverDialog.confirmTime" value-format="HH:mm:ss" placeholder="选择确认收货时间"></el-time-picker>
+            </div>
+        </my-dialog>
 
         <!--查看物流信息-->
         <my-logistics-info :visible.sync="logisticsDialog.visible" :baseItem='logisticsDialog.orderItem' :trackNumber='logisticsDialog.trackNumber'></my-logistics-info>

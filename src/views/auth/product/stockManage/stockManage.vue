@@ -2,23 +2,27 @@
     <div class="stock-main">
         <div class="common-search">
             <div class="item">
-                <label>供应商：</label>
+                <label>供应商</label>
                 <el-input v-model="searchModel.vendorName" placeholder="请输入" :maxlength="50"></el-input>
             </div>
             <div class="item">
-                <label>商品品类：</label>
+                <label>商品品类</label>
                 <el-input v-model="searchModel.commodityCategory" placeholder="请输入" :maxlength="50"></el-input>
             </div>
             <div class="item">
-                <label>订单号：</label>
+                <label>订单号</label>
                 <el-input v-model="searchModel.orderNo" placeholder="请输入" :maxlength="50"></el-input>
             </div>
             <div class="item">
-                <label>库存编号：</label>
+                <label>库存编号</label>
                 <el-input v-model="searchModel.stockNo" placeholder="请输入" :maxlength="50"></el-input>
             </div>
             <div class="item">
-                <label>库存状态：</label>
+                <label>货物识别码(串码)</label>
+                <el-input v-model="searchModel.goodsId" placeholder="请输入" :maxlength="50"></el-input>
+            </div>
+            <div class="item">
+                <label>库存状态</label>
                 <el-select v-model="searchModel.stockStatus">
                     <el-option label="请选择" value=""></el-option>
                     <el-option v-for="item in stockStatusList" :key="item.value" 
@@ -29,6 +33,9 @@
                 <el-button type="primary" icon="el-icon-search" @click="search()">查询</el-button>
                 <el-button type="primary" icon="el-icon-search" @click="reset()">重置</el-button>
             </div>
+        </div>
+        <div class="item">
+            <my-upload icon="el-icon-upload" v-model="importFile" class="ml10" :path="importUrl" btnText="批量导入修改商品识别码"  @uploadSuccess="importData" :showFilelist="false" :acceptType="2"></my-upload>
         </div>
         <my-table ref="table" :data="tableData" :option="tableOption" :onPaging="getList"></my-table>
         <!--汇总弹窗-->
@@ -87,6 +94,43 @@
                         <div class="form-item">
                             <label>商品编号：</label>
                             <el-input v-model="updateDialog.commodityNo"  placeholder="请输入" :maxlength="50"></el-input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </my-dialog>
+        <!--虚拟库存调整-->
+        <my-dialog title='虚拟库存调整' :visible.sync="updatexnDialog.visible" @onConfirm="updatexnSave()">
+            <div v-if="updatexnDialog.item" class="update-dialog">
+                <div class="my-form">
+                    <div class="form-item-inline">
+                        <div class="form-item">
+                            <label>库存码：</label>
+                            <span class="span-label">{{updatexnDialog.item.stockCode}}</span>
+                        </div>
+                        <div class="form-item">
+                            <label>商品品类：</label>
+                            <span class="span-label">{{updatexnDialog.item.commodityCategory}}</span>
+                        </div>
+                    </div>
+                    <div class="form-item-inline">
+                        <div class="form-item">
+                            <label>进货价：</label>
+                            <el-input v-model="updatexnDialog.buyPrice" placeholder="请输入" :maxlength="50"></el-input>
+                        </div>
+                        <div class="form-item">
+                            <label>商品识别码：</label>
+                            <el-input v-model="updatexnDialog.goodsId" placeholder="请输入" :maxlength="50"></el-input>
+                        </div>
+                    </div>
+                    <div class="form-item-inline">
+                        <div class="form-item">
+                            <label>供应商：</label>
+                            <el-input v-model="updatexnDialog.vendorName" placeholder="请输入" :maxlength="50"></el-input>
+                        </div>
+                        <div class="form-item">
+                            <label>税率：</label>
+                            <el-input v-model="updatexnDialog.ratio"  placeholder="请输入" :maxlength="50"></el-input>
                         </div>
                     </div>
                 </div>

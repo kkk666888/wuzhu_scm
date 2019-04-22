@@ -64,6 +64,7 @@ export default {
           { prop: 'ratio', label: '税率' },
           { prop: 'sumNonTaxPrice', label: '未含税总金额' },
           { prop: 'sumPrice', label: '含税总金额' },
+          { prop: 'floatScale', label: '采购价浮动比例' },
           { prop: 'commodityNo', label: '商品编号' },
           { prop: 'associatedBillNo', label: '关联单号' },
           { prop: 'warehouseName', label: '仓库名称' }

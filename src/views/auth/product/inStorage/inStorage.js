@@ -51,37 +51,38 @@ export default {
           { prop: 'depreciationRatio', label: '折旧系数', width: 80 },
           { prop: 'isLimited', label: '是否限量', width: 80 },
           { prop: 'commodityAttr', label: '属性' },
-          { prop: 'storageAmount', label: '在库量', width: 80 },
+          { prop: 'storageAmount', label: '仓库在库量', width: 100 },
+          { prop: 'storeStorageAmount', label: '门店在库量', width: 100 },
           { prop: 'waitSendAmount', label: '待发货', width: 80 },
-          { prop: 'waitConfirmAmount', label: '待确认入库', width: 100 },
+          // { prop: 'waitConfirmAmount', label: '待确认入库', width: 100 },
           { prop: 'waitRepairAmount', label: '待配货量', width: 80 },
-          {
-            prop: 'operate',
-            label: '操作',
-            width: 220,
-            render(h, param) {
-              return (
-                <div>
-                  <el-button
-                    type="primary"
-                    onClick={() => {
-                      thisObj.inStorageOpen(param.row);
-                    }}
-                  >
-                    已有商品入库
-                  </el-button>
-                  <el-button
-                    type="primary"
-                    onClick={() => {
-                      thisObj.inStorage(param.row);
-                    }}
-                  >
-                    确认入库
-                  </el-button>
-                </div>
-              );
-            }
-          }
+          // {
+          //   prop: 'operate',
+          //   label: '操作',
+          //   width: 220,
+          //   render(h, param) {
+          //     return (
+          //       <div>
+          //         <el-button
+          //           type="primary"
+          //           onClick={() => {
+          //             thisObj.inStorageOpen(param.row);
+          //           }}
+          //         >
+          //           已有商品入库
+          //         </el-button>
+          //         <el-button
+          //           type="primary"
+          //           onClick={() => {
+          //             thisObj.inStorage(param.row);
+          //           }}
+          //         >
+          //           确认入库
+          //         </el-button>
+          //       </div>
+          //     );
+          //   }
+          // }
         ]
       };
 

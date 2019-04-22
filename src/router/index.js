@@ -26,6 +26,8 @@ import collectDeliveryRoutes from './collectDeliveryManage.js'; //集采-送货�
 
 import rejectRoutes from './rejectManage.js'; // 拒收管理
 
+import purchaseManage from './purchaseManage.js'; // 采购管理
+
 Vue.use(Router);
 
 let routes = [
@@ -78,7 +80,8 @@ authorityRoutes.children = [
   ...collectInStorageRoutes,
   ...collectOutStorageRoutes,
   ...collectRepertoryRoutes,
-  ...rejectRoutes
+  ...rejectRoutes,
+  ...purchaseManage
 ];
 
 routes.push(authorityRoutes);
